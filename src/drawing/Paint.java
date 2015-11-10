@@ -2,10 +2,12 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  * Classe Interface graphique pour l'application de dessin
@@ -17,13 +19,18 @@ public class Paint {
 	private JButton circleButton;
 	private JButton rectangleButton;
 	private JPanel buttonPanel;
+	
 	private JPanel mainPanel;
+	private JPanel statusPanel;
+	
+	private JTextField counterFld;
 	private Drawing drawing;
 	
 	public void run(){
 		frame = new JFrame("Paint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel(new BorderLayout());
+		statusPanel = new JPanel(new BorderLayout());
 		
 		drawing = new Drawing();
 		drawing.setBackground(Color.WHITE);
@@ -36,8 +43,14 @@ public class Paint {
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		
-		mainPanel.add(buttonPanel, BorderLayout.SOUTH);
+		
 		mainPanel.add(drawing, BorderLayout.CENTER);
+		mainPanel.add(statusPanel, BorderLayout.SOUTH);
+		
+		counterFld = new JTextField("0");
+		counterFld.setPreferredSize(new Dimension(70, 20));
+		statusPanel.add(buttonPanel, BorderLayout.NORTH);
+		statusPanel.add(counterFld, BorderLayout.SOUTH);
 		
 		//listeners pour les boutons
 		clearButton.addActionListener(new ClearButtonListener(drawing));
@@ -50,7 +63,7 @@ public class Paint {
 		drawing.addMouseMotionListener(l);
 
 		frame.getContentPane().add(mainPanel);
-		frame.setSize(640,480);
+		frame.setSize(960, 680);
 		frame.setVisible(true);
 	}
 	

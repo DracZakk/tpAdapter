@@ -18,7 +18,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	}
 	
 	/**
-	 * Implémentation de l'interface Iterable<Shape>
+	 * Implementation de l'interface Iterable<Shape>
 	 */
 	public Iterator<Shape> iterator(){
 		return shapes.iterator();
@@ -33,7 +33,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	}
 	
 	/** 
-	 * Redéfinition de la méthode paintComponent() de JComponent
+	 * Redefinition de la methode paintComponent() de JComponent
 	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -43,7 +43,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	}
 	
 	/**
-	 * Enlève toutes les formes et redessine
+	 * EnlÔøΩve toutes les formes et redessine
 	 */
 	public void clear(){
 		shapes.clear();
