@@ -6,6 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,7 +24,7 @@ public class Paint {
 	private JPanel mainPanel;
 	private JPanel statusPanel;
 	
-	private JTextField counterFld;
+	private JLabel counterFld;
 	private Drawing drawing;
 	
 	public void run(){
@@ -47,7 +48,7 @@ public class Paint {
 		mainPanel.add(drawing, BorderLayout.CENTER);
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
 		
-		counterFld = new JTextField("0");
+		counterFld = new JLabel("Compteur de shape = 0", JLabel.CENTER);
 		counterFld.setPreferredSize(new Dimension(70, 20));
 		statusPanel.add(buttonPanel, BorderLayout.NORTH);
 		statusPanel.add(counterFld, BorderLayout.SOUTH);
