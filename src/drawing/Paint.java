@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 /**
  * Classe Interface graphique pour l'application de dessin
  */
-public class Paint {
+public class Paint implements Observer{
 
 	private JFrame frame;
 	private JButton clearButton;
@@ -55,9 +55,9 @@ public class Paint {
 		counterLabelCircle = new JLabel("Circle", JLabel.LEFT);
 		counterLabelRectangle = new JLabel("Rectangle", JLabel.RIGHT);
 		counterFldCircle = new JTextField();
-		counterFldCircle.setPreferredSize(new Dimension(200, 20));
+		counterFldCircle.setPreferredSize(new Dimension(20, 20));
 		counterFldRectangle = new JTextField();
-		counterFldRectangle.setPreferredSize(new Dimension(200, 20));
+		counterFldRectangle.setPreferredSize(new Dimension(20, 20));
 		statusPanel.add(buttonPanel, BorderLayout.NORTH);
 		statusText.add(counterFldCircle, BorderLayout.WEST);
 		statusText.add(counterFldRectangle, BorderLayout.EAST);
@@ -83,7 +83,7 @@ public class Paint {
 		drawing.addMouseMotionListener(l);
 
 		frame.getContentPane().add(mainPanel);
-		frame.setSize(960, 680);
+		frame.setSize(300, 300);
 		frame.setVisible(true);
 	}
 	
@@ -91,5 +91,12 @@ public class Paint {
 	public static void main(String[] args){
 		Paint app = new Paint();
 		app.run();
+	}
+
+
+	@Override
+	public void update(int value, int value2) {
+		counterFldCircle.setText(Integer.toString(value));
+		counterFldRectangle.setText(Integer.toString(value2)); 
 	}
 }

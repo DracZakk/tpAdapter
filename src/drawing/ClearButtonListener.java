@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 public class ClearButtonListener implements ActionListener {
 
 	Drawing drawing;
-	
 	public ClearButtonListener(Drawing drawing){
 		this.drawing = drawing;
 	}

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Vector;
 
 /**
  * Classe abstraite (Template Pattern) pour les listeners des boutons de
@@ -16,6 +17,19 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 	Point origin;
 	Point destination;
 	int cpt = 0;
+	int cpt2 = 0;
+	
+	private Vector<Observer> observers = new Vector<>();
+	
+	public void addObserver(Observer obs){
+		observers.add(obs);
+	}
+	
+	private void notifyObservers(){
+		for(Observer obs : observers){
+			obs.update(cpt, cpt2);
+		}
+	}
 	
 	public ShapeButtonListener(Drawing drawing){
 		this.drawing = drawing;
@@ -26,10 +40,25 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 	 */
 	public void actionPerformed(ActionEvent e) {
 		drawing.addMouseListener(this);
+		String command = e.getActionCommand();
+		if(command == "Circle"){
+			cpt++;
+			System.out.println(cpt);
+			notifyObservers();
+		}
+		if(command == "Rectangle"){
+			cpt2++;
+			notifyObservers();
+		}
+		if(command == "Clear"){
+			cpt = 0;
+			cpt2 = 0;
+			notifyObservers();
+		}
 	}
 	
 	/**
-	 * Une fois la souris relachae, cree la forme a la bonne dimension 
+	 * Une fois la souris relachee, cree la forme a la bonne dimension 
 	 * et enleve le MouseListener.
 	 * Template Pattern
 	 */
@@ -38,8 +67,6 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 		Shape s = createShape();
 		drawing.addShape(s);
 		drawing.removeMouseListener(this);
-		cpt++;
-		System.out.println(cpt);
 	}
 	
 	/**

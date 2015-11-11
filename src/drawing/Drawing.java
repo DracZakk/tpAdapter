@@ -43,7 +43,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	}
 	
 	/**
-	 * Enl�ve toutes les formes et redessine
+	 * Enleve toutes les formes et redessine
 	 */
 	public void clear(){
 		shapes.clear();
