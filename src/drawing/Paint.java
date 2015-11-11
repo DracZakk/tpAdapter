@@ -23,8 +23,13 @@ public class Paint {
 	
 	private JPanel mainPanel;
 	private JPanel statusPanel;
+	private JPanel statusText;
 	
-	private JLabel counterFld;
+	private JLabel counterLabel;
+	private JLabel counterLabelCircle;
+	private JLabel counterLabelRectangle;
+	private JTextField counterFldCircle;
+	private JTextField counterFldRectangle;
 	private Drawing drawing;
 	
 	public void run(){
@@ -32,6 +37,7 @@ public class Paint {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel(new BorderLayout());
 		statusPanel = new JPanel(new BorderLayout());
+		statusText = new JPanel(new BorderLayout());
 		
 		drawing = new Drawing();
 		drawing.setBackground(Color.WHITE);
@@ -44,14 +50,27 @@ public class Paint {
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		
+		int total = 0;
+		counterLabel = new JLabel("Compteur de shape = "+total, JLabel.CENTER);
+		counterLabelCircle = new JLabel("Circle", JLabel.LEFT);
+		counterLabelRectangle = new JLabel("Rectangle", JLabel.RIGHT);
+		counterFldCircle = new JTextField();
+		counterFldCircle.setPreferredSize(new Dimension(200, 20));
+		counterFldRectangle = new JTextField();
+		counterFldRectangle.setPreferredSize(new Dimension(200, 20));
+		statusPanel.add(buttonPanel, BorderLayout.NORTH);
+		statusText.add(counterFldCircle, BorderLayout.WEST);
+		statusText.add(counterFldRectangle, BorderLayout.EAST);
+		statusPanel.add(counterLabel, BorderLayout.CENTER);
+		statusPanel.add(counterLabelCircle, BorderLayout.WEST);
+		statusPanel.add(counterLabelRectangle, BorderLayout.EAST);
+		statusPanel.add(statusText, BorderLayout.SOUTH);
+		
+		
+		
 		
 		mainPanel.add(drawing, BorderLayout.CENTER);
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
-		
-		counterFld = new JLabel("Compteur de shape = 0", JLabel.CENTER);
-		counterFld.setPreferredSize(new Dimension(70, 20));
-		statusPanel.add(buttonPanel, BorderLayout.NORTH);
-		statusPanel.add(counterFld, BorderLayout.SOUTH);
 		
 		//listeners pour les boutons
 		clearButton.addActionListener(new ClearButtonListener(drawing));
