@@ -8,12 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+//import javax.swing.JTextField;
 
 /**
  * Classe Interface graphique pour l'application de dessin
  */
-public class Paint {
+public class Paint extends JPanel implements Observer{
 
 	private JFrame frame;
 	private JButton clearButton;
@@ -27,7 +27,7 @@ public class Paint {
 	private JLabel counterFld;
 	private Drawing drawing;
 	
-	public void run(){
+	public void run(CounterController controller){
 		frame = new JFrame("Paint");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainPanel = new JPanel(new BorderLayout());
@@ -48,7 +48,7 @@ public class Paint {
 		mainPanel.add(drawing, BorderLayout.CENTER);
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
 		
-		counterFld = new JLabel("Compteur de shape = 0", JLabel.CENTER);
+		counterFld = new JLabel("Compteur de shape "+controller, JLabel.CENTER);
 		counterFld.setPreferredSize(new Dimension(70, 20));
 		statusPanel.add(buttonPanel, BorderLayout.NORTH);
 		statusPanel.add(counterFld, BorderLayout.SOUTH);
@@ -71,6 +71,15 @@ public class Paint {
 	
 	public static void main(String[] args){
 		Paint app = new Paint();
-		app.run();
+		Drawing d = new Drawing();
+		CounterController c = new CounterController(d);
+		app.run(c);
+		//test
+	}
+
+
+	@Override
+	public void update(int value) {
+		counterFld.setText(Integer.toString(value));
 	}
 }

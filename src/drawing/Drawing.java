@@ -12,6 +12,12 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	
 	ArrayList<Shape> shapes;
 	
+	int counter = 0;
+	
+	public int getCounter() {
+		return counter;
+	}
+	
 	public Drawing(){
 		super();
 		shapes = new ArrayList<Shape>();
@@ -30,6 +36,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	public void addShape(Shape s){
 		shapes.add(s);
 		this.repaint();
+		counter++;
 	}
 	
 	/** 
@@ -43,7 +50,7 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	}
 	
 	/**
-	 * Enl�ve toutes les formes et redessine
+	 * Enlève toutes les formes et redessine
 	 */
 	public void clear(){
 		shapes.clear();
