@@ -4,8 +4,8 @@ import java.awt.Color;
 
 public class RectangleButtonListener extends ShapeButtonListener {
 
-	public RectangleButtonListener(Drawing drawing){
-		super(drawing);
+	public RectangleButtonListener(Drawing drawing, CounterShape cpt){
+		super(drawing, cpt);
 	}
 	
 	@Override

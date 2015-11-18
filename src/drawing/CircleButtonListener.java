@@ -5,8 +5,8 @@ import java.awt.Point;
 
 public class CircleButtonListener extends ShapeButtonListener {
 	
-	public CircleButtonListener(Drawing drawing){
-		super(drawing);
+	public CircleButtonListener(Drawing drawing, CounterShape cpt){
+		super(drawing, cpt);
 	}
 	
 	

@@ -31,6 +31,7 @@ public class Paint implements Observer{
 	private JTextField counterFldCircle;
 	private JTextField counterFldRectangle;
 	private Drawing drawing;
+	private CounterShape cpt = new CounterShape();
 	
 	public void run(){
 		frame = new JFrame("Paint");
@@ -50,13 +51,13 @@ public class Paint implements Observer{
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		
-		int total = 0;
-		counterLabel = new JLabel("Compteur de shape = "+total, JLabel.CENTER);
+		
+		counterLabel = new JLabel("Compteur de shape = 0", JLabel.CENTER);
 		counterLabelCircle = new JLabel("Circle", JLabel.LEFT);
 		counterLabelRectangle = new JLabel("Rectangle", JLabel.RIGHT);
-		counterFldCircle = new JTextField();
+		counterFldCircle = new JTextField("6");
 		counterFldCircle.setPreferredSize(new Dimension(100, 20));
-		counterFldRectangle = new JTextField();
+		counterFldRectangle = new JTextField("0");
 		counterFldRectangle.setPreferredSize(new Dimension(100, 20));
 		statusPanel.add(buttonPanel, BorderLayout.NORTH);
 		statusText.add(counterFldCircle, BorderLayout.WEST);
@@ -66,16 +67,13 @@ public class Paint implements Observer{
 		statusPanel.add(counterLabelRectangle, BorderLayout.EAST);
 		statusPanel.add(statusText, BorderLayout.SOUTH);
 		
-		
-		
-		
 		mainPanel.add(drawing, BorderLayout.CENTER);
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
 		
 		//listeners pour les boutons
-		clearButton.addActionListener(new ClearButtonListener(drawing));
-		circleButton.addActionListener(new CircleButtonListener(drawing));
-		rectangleButton.addActionListener(new RectangleButtonListener(drawing));
+		clearButton.addActionListener(new ClearButtonListener(drawing, cpt));
+		circleButton.addActionListener(new CircleButtonListener(drawing, cpt));
+		rectangleButton.addActionListener(new RectangleButtonListener(drawing, cpt));
 		
 		//listeners pour la zone de dessin
 		DrawingMouseListener l = new DrawingMouseListener(drawing);
@@ -84,6 +82,7 @@ public class Paint implements Observer{
 
 		frame.getContentPane().add(mainPanel);
 		frame.setSize(640, 480);
+		cpt.addObserver(this);
 		frame.setVisible(true);
 	}
 	
@@ -95,9 +94,10 @@ public class Paint implements Observer{
 
 
 	@Override
-	public void update(int value, int value2) {
+	public void update(int value, int value2, int total) {
 		counterFldCircle.setText(Integer.toString(value));
 		counterFldRectangle.setText(Integer.toString(value2)); 
+		counterLabel.setText("Compteur de shape = "+ total);
 	}
 
 }

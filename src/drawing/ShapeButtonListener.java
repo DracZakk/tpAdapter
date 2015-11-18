@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
 
 /**
  * Classe abstraite (Template Pattern) pour les listeners des boutons de
@@ -16,23 +15,12 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 	Drawing drawing;
 	Point origin;
 	Point destination;
-	int cpt = 0;
-	int cpt2 = 0;
 	
-	private Vector<Observer> observers = new Vector<>();
+	CounterShape cpt;
 	
-	public void addObserver(Observer obs){
-		observers.add(obs);
-	}
-	
-	private void notifyObservers(){
-		for(Observer obs : observers){
-			obs.update(cpt, cpt2);
-		}
-	}
-	
-	public ShapeButtonListener(Drawing drawing){
+	public ShapeButtonListener(Drawing drawing, CounterShape cpt){
 		this.drawing = drawing;
+		this.cpt = cpt;
 	}
 	
 	/**
@@ -42,18 +30,10 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 		drawing.addMouseListener(this);
 		String command = e.getActionCommand();
 		if(command == "Circle"){
-			cpt++;
-			//System.out.println(cpt);
-			notifyObservers();
+			cpt.incrementCircle();
 		}
 		if(command == "Rectangle"){
-			cpt2++;
-			notifyObservers();
-		}
-		if(command == "Clear"){
-			cpt = 0;
-			cpt2 = 0;
-			notifyObservers();
+			cpt.incrementRectangle();
 		}
 	}
 	
