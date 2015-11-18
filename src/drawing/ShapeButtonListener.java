@@ -43,7 +43,7 @@ public abstract class ShapeButtonListener implements ActionListener, MouseListen
 		String command = e.getActionCommand();
 		if(command == "Circle"){
 			cpt++;
-			System.out.println(cpt);
+			//System.out.println(cpt);
 			notifyObservers();
 		}
 		if(command == "Rectangle"){

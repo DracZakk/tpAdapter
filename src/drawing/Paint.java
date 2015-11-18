@@ -55,9 +55,9 @@ public class Paint implements Observer{
 		counterLabelCircle = new JLabel("Circle", JLabel.LEFT);
 		counterLabelRectangle = new JLabel("Rectangle", JLabel.RIGHT);
 		counterFldCircle = new JTextField();
-		counterFldCircle.setPreferredSize(new Dimension(20, 20));
+		counterFldCircle.setPreferredSize(new Dimension(100, 20));
 		counterFldRectangle = new JTextField();
-		counterFldRectangle.setPreferredSize(new Dimension(20, 20));
+		counterFldRectangle.setPreferredSize(new Dimension(100, 20));
 		statusPanel.add(buttonPanel, BorderLayout.NORTH);
 		statusText.add(counterFldCircle, BorderLayout.WEST);
 		statusText.add(counterFldRectangle, BorderLayout.EAST);
@@ -83,7 +83,7 @@ public class Paint implements Observer{
 		drawing.addMouseMotionListener(l);
 
 		frame.getContentPane().add(mainPanel);
-		frame.setSize(300, 300);
+		frame.setSize(640, 480);
 		frame.setVisible(true);
 	}
 	
@@ -99,4 +99,5 @@ public class Paint implements Observer{
 		counterFldCircle.setText(Integer.toString(value));
 		counterFldRectangle.setText(Integer.toString(value2)); 
 	}
+
 }
