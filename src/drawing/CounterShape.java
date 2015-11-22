@@ -18,7 +18,7 @@ public class CounterShape {
 		observers.add(obs);
 	}
 	
-	private void notifyObservers(){
+	protected void notifyObservers(){
 		for(Observer obs : observers){
 			obs.update(cptCircle, cptRectangle, total);
 		}
@@ -35,6 +35,8 @@ public class CounterShape {
 		total++;
 		notifyObservers();
 	}
+	
+	
 	
 	public void clearCounterShape() {
 		cptCircle = 0;

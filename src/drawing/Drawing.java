@@ -11,7 +11,6 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	private static final long serialVersionUID = 1L;
 	
 	ArrayList<Shape> shapes;
-	
 	public Drawing(){
 		super();
 		shapes = new ArrayList<Shape>();

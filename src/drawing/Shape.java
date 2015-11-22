@@ -21,7 +21,7 @@ public abstract class Shape {
 	public abstract void paint(Graphics g);
 	
 	/**
-	 * renvoie true si la forme occupe sur le point donné
+	 * renvoie true si la forme occupe sur le point donn√©
 	 */
 	public abstract boolean isOn(Point p);
 }

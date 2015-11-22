@@ -32,6 +32,7 @@ public class Paint implements Observer{
 	private JTextField counterFldRectangle;
 	private Drawing drawing;
 	private CounterShape cpt = new CounterShape();
+
 	
 	public void run(){
 		frame = new JFrame("Paint");
@@ -39,6 +40,7 @@ public class Paint implements Observer{
 		mainPanel = new JPanel(new BorderLayout());
 		statusPanel = new JPanel(new BorderLayout());
 		statusText = new JPanel(new BorderLayout());
+		
 		
 		drawing = new Drawing();
 		drawing.setBackground(Color.WHITE);
@@ -52,10 +54,10 @@ public class Paint implements Observer{
 		buttonPanel.add(rectangleButton);
 		
 		
-		counterLabel = new JLabel("Compteur de shape = 0", JLabel.CENTER);
+		counterLabel = new JLabel("Compteur de shape = 0 | Compteur group = 0", JLabel.CENTER);
 		counterLabelCircle = new JLabel("Circle", JLabel.LEFT);
 		counterLabelRectangle = new JLabel("Rectangle", JLabel.RIGHT);
-		counterFldCircle = new JTextField("6");
+		counterFldCircle = new JTextField("0");
 		counterFldCircle.setPreferredSize(new Dimension(100, 20));
 		counterFldRectangle = new JTextField("0");
 		counterFldRectangle.setPreferredSize(new Dimension(100, 20));
@@ -97,7 +99,7 @@ public class Paint implements Observer{
 	public void update(int value, int value2, int total) {
 		counterFldCircle.setText(Integer.toString(value));
 		counterFldRectangle.setText(Integer.toString(value2)); 
-		counterLabel.setText("Compteur de shape = "+ total);
+		counterLabel.setText("Compteur de shape = "+ total + " | Compteur group = 0");
 	}
 
 }
