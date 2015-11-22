@@ -78,7 +78,7 @@ public class Paint implements Observer{
 		rectangleButton.addActionListener(new RectangleButtonListener(drawing, cpt));
 		
 		//listeners pour la zone de dessin
-		DrawingMouseListener l = new DrawingMouseListener(drawing);
+		DrawingMouseListener l = new DrawingMouseListener(drawing, cpt);
 		drawing.addMouseListener(l);
 		drawing.addMouseMotionListener(l);
 
@@ -96,10 +96,10 @@ public class Paint implements Observer{
 
 
 	@Override
-	public void update(int value, int value2, int total) {
+	public void update(int value, int value2, int total, int listGroup) {
 		counterFldCircle.setText(Integer.toString(value));
 		counterFldRectangle.setText(Integer.toString(value2)); 
-		counterLabel.setText("Compteur de shape = "+ total + " | Compteur group = 0");
+		counterLabel.setText("Compteur de shape = "+ total + " | Compteur group = "+ listGroup);
 	}
 
 }

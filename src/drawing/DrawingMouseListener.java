@@ -12,11 +12,13 @@ public class DrawingMouseListener  extends CounterShape implements MouseMotionLi
 
 	Drawing drawing;
 	Shape currentShape = null;
+	CounterShape cpt;
 	
 	Vector<Shape> shapeList = new Vector<Shape>();
 	
-	public DrawingMouseListener(Drawing d){
+	public DrawingMouseListener(Drawing d, CounterShape cpt){
 		drawing = d;
+		this.cpt = cpt;
 	}
 	
 	/**
@@ -56,7 +58,7 @@ public class DrawingMouseListener  extends CounterShape implements MouseMotionLi
 			if (shapeList.size() != 0) {
 				shapeList.clear();
 				System.out.println("Objet deselectionne de la liste");
-				
+				cpt.resetListGroup();
 			}
 		}
 	}
@@ -71,6 +73,7 @@ public class DrawingMouseListener  extends CounterShape implements MouseMotionLi
 				if (shape.isOn(e.getPoint())) {
 					shapeList.add(shape);
 					System.out.println("Liste d'objets selectionnes = " + shapeList.size());
+					cpt.incrementListGroup();
 				}
 			}
 		}

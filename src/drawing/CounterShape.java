@@ -6,11 +6,13 @@ public class CounterShape {
 	int cptCircle;
 	int cptRectangle;
 	int total;
+	int listGroup;
 	
 	public CounterShape() {
 		cptCircle = 0;
 		cptRectangle = 0;
 		total = 0;
+		listGroup = 0;
 		notifyObservers();
 	}
 	
@@ -20,7 +22,7 @@ public class CounterShape {
 	
 	protected void notifyObservers(){
 		for(Observer obs : observers){
-			obs.update(cptCircle, cptRectangle, total);
+			obs.update(cptCircle, cptRectangle, total, listGroup);
 		}
 	}
 	
@@ -36,7 +38,15 @@ public class CounterShape {
 		notifyObservers();
 	}
 	
+	public void incrementListGroup() {
+		listGroup++;
+		notifyObservers();
+	}
 	
+	public void resetListGroup() {
+		listGroup = 0;
+		notifyObservers();
+	}
 	
 	public void clearCounterShape() {
 		cptCircle = 0;
