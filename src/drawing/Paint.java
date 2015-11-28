@@ -3,12 +3,20 @@ package drawing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 /**
  * Classe Interface graphique pour l'application de dessin
@@ -22,6 +30,8 @@ public class Paint implements Observer{
 	private JButton duplicateButton;
 	private JPanel buttonPanel;
 	
+	private JMenuBar menuBar = new JMenuBar();
+	
 	private JPanel mainPanel;
 	private JPanel statusPanel;
 	private JPanel statusText;
@@ -31,16 +41,50 @@ public class Paint implements Observer{
 	private JLabel counterLabelRectangle;
 	private JTextField counterFldCircle;
 	private JTextField counterFldRectangle;
+	
 	private Drawing drawing;
 	private CounterShape cpt = new CounterShape();
 
 	
 	public void run(){
-		frame = new JFrame("Paint");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = new JFrame("Paint by TRABELSI Nadir - Master ISIDIS");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);;
 		mainPanel = new JPanel(new BorderLayout());
 		statusPanel = new JPanel(new BorderLayout());
 		statusText = new JPanel(new BorderLayout());
+		
+		
+		JMenu fichier = new JMenu("Fichier");
+		JMenuItem close = new JMenuItem("Fermer");
+		close.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {   	
+			    int option = JOptionPane.showConfirmDialog(null, 
+			        "Etes-vous sûr de vouloir quitter ?", 
+			        "Quitter l'application Paint", 
+			        JOptionPane.YES_NO_OPTION, 
+			        JOptionPane.QUESTION_MESSAGE);
+
+			    if(option == JOptionPane.OK_OPTION){
+			    	System.exit(0);
+			    }
+				
+		    }        
+		});
+		JMenu options = new JMenu("Options");
+		JMenuItem clear = new JMenuItem("Clear");
+		clear.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				drawing.clear();
+			}
+		});
+		JMenuItem duplicate = new JMenuItem("Duplicate");
+		duplicate.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				drawing.duplication();
+			}
+		});
+		JMenuItem undo = new JMenuItem("Undo");
+		JMenuItem redo = new JMenuItem("Redo");
 		
 		
 		drawing = new Drawing();
@@ -72,6 +116,22 @@ public class Paint implements Observer{
 		statusPanel.add(counterLabelRectangle, BorderLayout.EAST);
 		statusPanel.add(statusText, BorderLayout.SOUTH);
 		
+		fichier.add(close);
+		options.add(clear);
+		options.add(duplicate);
+		options.add(undo);
+		options.add(redo);
+		fichier.setMnemonic('f');
+		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));
+		options.setMnemonic('o');
+		clear.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
+		duplicate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
+		undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK));
+		redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));
+		menuBar.add(fichier);
+		menuBar.add(options);
+		
+		mainPanel.add(menuBar, BorderLayout.NORTH);
 		mainPanel.add(drawing, BorderLayout.CENTER);
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
 		
@@ -87,8 +147,10 @@ public class Paint implements Observer{
 		drawing.addMouseMotionListener(l);
 
 		frame.getContentPane().add(mainPanel);
-		frame.setSize(640, 480);
+		frame.setSize(1024, 768);
+		frame.setLocationRelativeTo(null);
 		cpt.addObserver(this);
+		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 	}
 	
