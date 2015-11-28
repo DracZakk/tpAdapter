@@ -27,6 +27,16 @@ public class Circle extends Shape{
 	private double distanceToCenter(Point p){
 		return this.origin.distance(p);
 	}
+
+	@Override
+	public Point origin(){
+		return this.origin;
+	}
+
+	@Override
+	public Shape duplicateShape() {
+		return new Circle(this.origin,this.radius,this.color);
+	}
 	
 
 

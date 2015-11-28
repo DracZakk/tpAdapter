@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 public class Rectangle extends Shape {
-
+	
 	int width;
 	int height;
 	Color color;
@@ -26,5 +26,15 @@ public class Rectangle extends Shape {
 		g.fillRect(origin.x, origin.y, width, height);
 		g.setColor(Color.BLACK);
 		g.drawRect(origin.x, origin.y, width, height);
+	}
+
+	@Override
+	public Point origin(){
+		return this.origin;
+	}
+
+	@Override
+	public Shape duplicateShape() {
+		return new Rectangle(this.origin,this.width,this.height,this.color);
 	}
 }

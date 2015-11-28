@@ -9,11 +9,13 @@ import java.util.*;
 public class Drawing extends JPanel implements Iterable<Shape> {
 
 	private static final long serialVersionUID = 1L;
-	
 	ArrayList<Shape> shapes;
+	ArrayList<Shape> shapesCloneList;
+	
 	public Drawing(){
 		super();
 		shapes = new ArrayList<Shape>();
+		shapesCloneList = new ArrayList<Shape>();
 	}
 	
 	/**
@@ -39,6 +41,9 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 		for(Shape s : shapes){
 			s.paint(g);
 		}
+		for(Shape s : shapesCloneList){
+			s.paint(g);
+		}
 	}
 	
 	/**
@@ -46,8 +51,21 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	 */
 	public void clear(){
 		shapes.clear();
+		shapesCloneList.clear();
 		this.repaint();
 	}
 	
-	
+	public void duplication(){
+		if (shapes.size() != 0){
+			for (Shape shape : shapes){
+				Shape clone = shape.duplicateShape();
+				Point point = new Point(shape.origin());
+				point.y += 120;
+				clone.setOrigin(point);
+				shapesCloneList.add(clone);
+				System.out.println("shape is duplicated");
+			}
+			this.repaint();
+		}
+	}
 }

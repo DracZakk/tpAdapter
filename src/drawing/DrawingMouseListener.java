@@ -25,11 +25,11 @@ public class DrawingMouseListener  extends CounterShape implements MouseMotionLi
 	 * Bouge la forme selectionnee (si une forme est selectionnee)
 	 */
 	public void mouseDragged(MouseEvent e) {
-		if(currentShape != null){
+		if (currentShape != null) {
 			currentShape.setOrigin(e.getPoint());
 			drawing.repaint();
 		}
-		if(shapeList.size() != 0) {
+		if (shapeList.size() != 0) {
 			for(Shape shape : shapeList) {
 				shape.setOrigin(e.getPoint());
 				drawing.repaint();

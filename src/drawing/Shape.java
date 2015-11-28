@@ -24,4 +24,8 @@ public abstract class Shape {
 	 * renvoie true si la forme occupe sur le point donné
 	 */
 	public abstract boolean isOn(Point p);
+	
+	public abstract Point origin();
+	
+	public abstract Shape duplicateShape();
 }
