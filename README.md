@@ -16,7 +16,8 @@ dupliquer les formes en cliquant sur "Outils-Duplicate", ou encore à l'aide du 
 clavier "Ctrl + D".
 
 ## Quatrième Evolution
-
+Tentative d'implémentation de l'undo redo avec le design Pattern **Command** mais non focntionnel.
+Voir l'implémentation au niveau de la branche *QuatriemeEvo* 
 ## Cinquieme Evolution
 Du texte peut être ajouté sur les formes dessinées à l'aide du bouton "Text". Un texte prédéfini 
 peut être écrit en cliquant sur "Outils-Text", ou encore à l'aide du raccourci clavier Ctrl + D.
