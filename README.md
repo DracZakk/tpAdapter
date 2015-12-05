@@ -20,3 +20,4 @@ clavier "Ctrl + D".
 ## Cinquieme Evolution
 Du texte peut être ajouté sur les formes dessinées à l'aide du bouton "Text". Un texte prédéfini 
 peut être écrit en cliquant sur "Outils-Text", ou encore à l'aide du raccourci clavier Ctrl + D.
+Le design Pattern **Decorator** à été utilisé.
