@@ -52,7 +52,4 @@ public class Circle extends Shape{
 	public void setText(String text) {
 		this.text = text;
 	}
-	
-
-
 }

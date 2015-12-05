@@ -29,6 +29,8 @@ public class Paint implements Observer{
 	private JButton rectangleButton;
 	private JButton duplicateButton;
 	private JButton textButton;
+	private JButton undoButton;
+	private JButton redoButton;
 	private JPanel buttonPanel;
 	
 	private JMenuBar menuBar = new JMenuBar();
@@ -100,14 +102,18 @@ public class Paint implements Observer{
 		circleButton = new JButton("Circle");
 		rectangleButton = new JButton("Rectangle");
 		duplicateButton = new JButton("Duplicate");
+		undoButton = new JButton("Undo");
+		redoButton = new JButton("Redo");
 		textButton = new JButton("Text");
 		
 		buttonPanel = new JPanel();
+		buttonPanel.add(undoButton);
 		buttonPanel.add(clearButton);
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		buttonPanel.add(duplicateButton);
 		buttonPanel.add(textButton);
+		buttonPanel.add(redoButton);
 		
 		
 		counterLabel = new JLabel("Compteur de shape = 0 | Compteur group = 0", JLabel.CENTER);
@@ -147,11 +153,13 @@ public class Paint implements Observer{
 		mainPanel.add(statusPanel, BorderLayout.SOUTH);
 		
 		//listeners pour les boutons
+		undoButton.addActionListener(new UndoButtonListener(drawing));
 		clearButton.addActionListener(new ClearButtonListener(drawing, cpt));
 		circleButton.addActionListener(new CircleButtonListener(drawing, cpt));
 		rectangleButton.addActionListener(new RectangleButtonListener(drawing, cpt));
 		duplicateButton.addActionListener(new DuplicateButtonListener(drawing, cpt));
 		textButton.addActionListener(new TextButtonListener(drawing));
+		
 		
 		//listeners pour la zone de dessin
 		DrawingMouseListener l = new DrawingMouseListener(drawing, cpt);

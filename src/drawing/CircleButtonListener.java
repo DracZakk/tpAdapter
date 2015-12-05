@@ -20,4 +20,18 @@ public class CircleButtonListener extends ShapeButtonListener {
 		Circle c = new Circle(center, radius, Color.RED);
 		return c;
 	}
+
+
+	@Override
+	public void execute() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void undo() {
+		// TODO Auto-generated method stub
+		
+	}
 }
