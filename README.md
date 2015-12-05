@@ -1,6 +1,6 @@
 # Projet POOA
 
-*TRABELSI Nadir - Master ISIDIS
+*TRABELSI Nadir - Master ISIDIS*
 
 ## Première Evolution
 Ajout de la barre de statut à l'aide du design patter **Observer**.
