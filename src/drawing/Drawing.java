@@ -68,4 +68,42 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 			this.repaint();
 		}
 	}
+	
+	public int lengthList() {
+		return shapes.size();
+	}
+	
+	public void textShape(String name) {
+		if (shapes.size() != 0) {
+			for (Shape shape : shapes) {
+				shape.setText(name);
+			}
+			this.repaint();
+		}
+		
+		if (shapesCloneList.size() != 0) {
+			for (Shape shapeClone : shapes) {
+				shapeClone.setText(name);
+			}
+			this.repaint();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

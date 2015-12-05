@@ -28,4 +28,6 @@ public abstract class Shape {
 	public abstract Point origin();
 	
 	public abstract Shape duplicateShape();
+	
+	public abstract void setText(String name);
 }

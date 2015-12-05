@@ -28,6 +28,7 @@ public class Paint implements Observer{
 	private JButton circleButton;
 	private JButton rectangleButton;
 	private JButton duplicateButton;
+	private JButton textButton;
 	private JPanel buttonPanel;
 	
 	private JMenuBar menuBar = new JMenuBar();
@@ -85,6 +86,12 @@ public class Paint implements Observer{
 		});
 		JMenuItem undo = new JMenuItem("Undo");
 		JMenuItem redo = new JMenuItem("Redo");
+		JMenuItem text = new JMenuItem("Text");
+		text.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				drawing.textShape("Cliquer sur text pour changer le message");
+			}
+		});
 		
 		
 		drawing = new Drawing();
@@ -93,12 +100,14 @@ public class Paint implements Observer{
 		circleButton = new JButton("Circle");
 		rectangleButton = new JButton("Rectangle");
 		duplicateButton = new JButton("Duplicate");
+		textButton = new JButton("Text");
 		
 		buttonPanel = new JPanel();
 		buttonPanel.add(clearButton);
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		buttonPanel.add(duplicateButton);
+		buttonPanel.add(textButton);
 		
 		
 		counterLabel = new JLabel("Compteur de shape = 0 | Compteur group = 0", JLabel.CENTER);
@@ -121,6 +130,7 @@ public class Paint implements Observer{
 		options.add(duplicate);
 		options.add(undo);
 		options.add(redo);
+		options.add(text);
 		fichier.setMnemonic('f');
 		close.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.CTRL_MASK));
 		options.setMnemonic('o');
@@ -128,6 +138,7 @@ public class Paint implements Observer{
 		duplicate.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_MASK));
 		undo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, KeyEvent.CTRL_MASK));
 		redo.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));
+		text.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, KeyEvent.CTRL_MASK));
 		menuBar.add(fichier);
 		menuBar.add(options);
 		
@@ -140,6 +151,7 @@ public class Paint implements Observer{
 		circleButton.addActionListener(new CircleButtonListener(drawing, cpt));
 		rectangleButton.addActionListener(new RectangleButtonListener(drawing, cpt));
 		duplicateButton.addActionListener(new DuplicateButtonListener(drawing, cpt));
+		textButton.addActionListener(new TextButtonListener(drawing));
 		
 		//listeners pour la zone de dessin
 		DrawingMouseListener l = new DrawingMouseListener(drawing, cpt);
